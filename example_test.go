@@ -38,6 +38,22 @@ func ExampleMap() {
 	// Names of each struct: [Bionic Hound]
 }
 
+func ExampleMapM() {
+	greetings := map[string]string{
+		"hello":   "hi there, %s!",
+		"goodbye": "see ya, %s!",
+	}
+
+	personalised := fungi.MapM(greetings, func(s string) string { return fmt.Sprintf(s, "Bionic") })
+
+	fmt.Println(personalised["hello"])
+	fmt.Println(personalised["goodbye"])
+
+	// Output:
+	// hi there, Bionic!
+	// see ya, Bionic!
+}
+
 func ExampleFold() {
 	numbers := []int{1, 2, 3, 4}
 	args := []string{"go", "help", "test"}

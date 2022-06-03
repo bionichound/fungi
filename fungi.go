@@ -17,6 +17,16 @@ func Map[T, U interface{}](ls []T, fun func(i T) U) []U {
 	return result
 }
 
+// MapM is very similar to map, except that it is specific to map structures
+func MapM[T comparable, U, V interface{}](m map[T]U, fun func(i U) V) map[T]V {
+	result := make(map[T]V)
+
+	for n, i := range m {
+		result[n] = fun(i)
+	}
+	return result
+}
+
 // Fold is a function that 'reduces' a generic collection into a new generic value using
 // a reduction/fold function and an initial value.
 func Fold[A, B interface{}](r func(item A, acc B) B, init B, ls []A) B {
